@@ -1,6 +1,9 @@
-bin\.csv_short\main_loop_short.csv
-bin\.csv_long\main_loop_long.csv
+inner_trials.addData("score", score) 
+outer_trials.addData("score", score)
+thisExp.addData("final_score", score)
 
+# At the end of experiment, after score is finalized
+thisExp.addData("final_score", score)
 
 
 

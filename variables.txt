@@ -1,17 +1,53 @@
+
+globalClock.getTime()
+globalClock.getLastResetTime()
+globalClock.reset()
+
+
+core.getAbsTime()
+core.getTime() ## THIS IS ALWAYS THE TIME FROM THE VERY VERY START!
+
+inner_trials
 ##########################################################################################################
 ## This is when the instructions end:
 
+
+thisInner_trial.data.parent.nRemaining
+
+
+expInfo
+
+thisExp
+
 globalClock.reset()  # Resets the global timer to 0
 stop_routine = False
-
 random_interval
+inner_trials.addData()
+inner_trials.next() # advances to next set of trial
+inner_trials.skipTrials(thisInner_trial.data.parent.nRemaining) # Skip ahead n number of trials
+## Try the above with the value of n remaining
+inner_trials.nRemaining
+thisInner_trial.thisRepN
+
+inner_trials.skipTrials(inner_trials.nRemaining)
+
+Stop this trial
+inner_trials.abortCurrentTrial()
+continueRoutine = False
+
+
+thisOuter_trial['thisN']
+thisOuter_trial.thisTrialN
+thisOuter_trial['thisTrialN']
+len(thisOuter_trial)
 
 
 ##########################################################################################################
 ##########################################################################################################
 ##########################################################################################################
 random_interval
-
+Just do:
+random_interval = randint(10,20)
 
 Attribute	What it gives you
 trials2.thisTrialN	Trial index in that loop (0-based)
@@ -52,3 +88,11 @@ if t >= random_interval:  # If the routine has been running for 15 seconds
 
 
 win.color = background 
+
+
+
+
+psychopy.core.clock.Clock
+
+OR?
+core.Clock()

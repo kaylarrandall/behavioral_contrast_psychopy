@@ -1,4 +1,4 @@
-﻿score_interval,end_time,points,background,instructions_text,instructions_2_text,conditional_instructions_1,conditional_instructions_2
+﻿scoring_interval,end_time,points,background,instructions_text,instructions_2_text,conditional_instructions_1,conditional_instructions_2
 1,120,1,green,,,,
 2,120,1,green,,,,
 3,120,1,green,,,,

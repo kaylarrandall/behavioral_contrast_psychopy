@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 11, 2025, at 12:48
+    on September 11, 2025, at 14:32
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -68,7 +68,7 @@ or run the experiment with `--pilot` as an argument. To change what pilot
 PILOTING = core.setPilotModeFromArgs()
 # start off with values from experiment settings
 _fullScr = True
-_winSize = [1280, 853]
+_winSize = [1920, 1080]
 # if in pilot mode, apply overrides according to preferences
 if PILOTING:
     # force windowed mode
@@ -137,7 +137,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\Admin\\OneDrive - Georgia Southern University\\4_RESEARCH\\behavior_contrast\\behavior_contrast_main_v1.0.3\\main_csv_2_lastrun.py',
+        originPath='C:\\Users\\Michael\\OneDrive - Georgia Southern University\\4_RESEARCH\\behavior_contrast\\behavioral_contrast_psychopy\\main_csv_2_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -192,7 +192,7 @@ def setupWindow(expInfo=None, win=None):
     if win is None:
         # if not given a window to setup, make one
         win = visual.Window(
-            size=_winSize, fullscr=_fullScr, screen=0,
+            size=_winSize, fullscr=_fullScr, screen=2,
             winType='pyglet', allowGUI=True, allowStencil=True,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
@@ -382,12 +382,29 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     big_text = visual.TextStim(win=win, name='big_text',
         text='',
         font='Arial',
-        pos=(-.5, 0.1), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
+        pos=(-.5, 0.1), draggable=False, height=0.06, wrapWidth=1.0, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-3.0);
     # Run 'Begin Experiment' code from code
     score = 0
+    button_2 = visual.ButtonStim(win, 
+        text='Reset Global Clock', font='Arvo',
+        pos=(0.5, 0.5),
+        letterHeight=0.025,
+        size=(0.3, 0.3), 
+        ori=0.0
+        ,borderWidth=2.0,
+        fillColor='black', borderColor='red',
+        color='white', colorSpace='rgb',
+        opacity=None,
+        bold=True, italic=False,
+        padding=None,
+        anchor='center',
+        name='button_2',
+        depth=-5
+    )
+    button_2.buttonClock = core.Clock()
     
     # --- Initialize components for Routine "points_square_exp_2" ---
     mouse_logging_2 = event.Mouse(win=win)
@@ -474,7 +491,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         method='sequential', 
         extraInfo=expInfo, 
         originPath=-1, 
-        trialList=data.importConditions('bin/.csv/main_loop.csv'), 
+        trialList=data.importConditions('bin/.csv/short_loop.csv'), 
         seed=None, 
     )
     thisExp.addLoop(outer_trials)  # add the loop to the experiment
@@ -539,7 +556,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # create an object to store info about Routine main_square_exp_2
             main_square_exp_2 = data.Routine(
                 name='main_square_exp_2',
-                components=[logging_mouse, click_square, mouse_score, big_text],
+                components=[logging_mouse, click_square, mouse_score, big_text, button_2],
             )
             main_square_exp_2.status = NOT_STARTED
             continueRoutine = True
@@ -553,8 +570,17 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             logging_mouse.time = []
             gotValidClick = False  # until a click is received
             # setup some python lists for storing info about the mouse_score
+            mouse_score.x = []
+            mouse_score.y = []
+            mouse_score.leftButton = []
+            mouse_score.midButton = []
+            mouse_score.rightButton = []
+            mouse_score.time = []
+            mouse_score.corr = []
             mouse_score.clicked_name = []
             gotValidClick = False  # until a click is received
+            # reset button_2 to account for continued clicks & clear times on/off
+            button_2.reset()
             # store start times for main_square_exp_2
             main_square_exp_2.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
             main_square_exp_2.tStart = globalClock.getTime(format='float')
@@ -607,7 +633,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # if logging_mouse is stopping this frame...
                 if logging_mouse.status == STARTED:
                     # is it time to stop? (based on global clock, using actual start)
-                    if tThisFlipGlobal > logging_mouse.tStartRefresh + score_interval - 0.005-frameTolerance:
+                    if tThisFlipGlobal > logging_mouse.tStartRefresh + scoring_interval-frameTolerance:
                         # keep track of stop time/frame for later
                         logging_mouse.tStop = t  # not accounting for scr refresh
                         logging_mouse.tStopRefresh = tThisFlipGlobal  # on global time
@@ -651,7 +677,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # *mouse_score* updates
                 
                 # if mouse_score is starting this frame...
-                if mouse_score.status == NOT_STARTED and t >= score_interval-frameTolerance:
+                if mouse_score.status == NOT_STARTED and t >= scoring_interval-frameTolerance:
                     # keep track of start time/frame for later
                     mouse_score.frameNStart = frameN  # exact frame index
                     mouse_score.tStart = t  # local t and not account for scr refresh
@@ -677,7 +703,24 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                                     mouse_score.clicked_name.append(obj.name)
                             if not gotValidClick:
                                 mouse_score.clicked_name.append(None)
-                            if gotValidClick:  
+                            # check whether click was in correct object
+                            if gotValidClick:
+                                _corr = 0
+                                _corrAns = environmenttools.getFromNames(click_square, namespace=locals())
+                                for obj in _corrAns:
+                                    # is this object clicked on?
+                                    if obj.contains(mouse_score):
+                                        _corr = 1
+                                mouse_score.corr.append(_corr)
+                            x, y = mouse_score.getPos()
+                            mouse_score.x.append(x)
+                            mouse_score.y.append(y)
+                            buttons = mouse_score.getPressed()
+                            mouse_score.leftButton.append(buttons[0])
+                            mouse_score.midButton.append(buttons[1])
+                            mouse_score.rightButton.append(buttons[2])
+                            mouse_score.time.append(globalClock.getTime())
+                            if gotValidClick:
                                 continueRoutine = False  # end routine on response
                 
                 # *big_text* updates
@@ -700,9 +743,45 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # update params
                     big_text.setText(f'''
                     score:{score}
-                    score interval:{score_interval}
-                    
+                    score interval:{scoring_interval}
+                    clock {int(t)}
+                    Global Clock: {int(globalClock.getTime())}
+                    Core Clock:{int(core.getTime())}
                     ''', log=False)
+                # *button_2* updates
+                
+                # if button_2 is starting this frame...
+                if button_2.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+                    # keep track of start time/frame for later
+                    button_2.frameNStart = frameN  # exact frame index
+                    button_2.tStart = t  # local t and not account for scr refresh
+                    button_2.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(button_2, 'tStartRefresh')  # time at next scr refresh
+                    # add timestamp to datafile
+                    thisExp.timestampOnFlip(win, 'button_2.started')
+                    # update status
+                    button_2.status = STARTED
+                    win.callOnFlip(button_2.buttonClock.reset)
+                    button_2.setAutoDraw(True)
+                
+                # if button_2 is active this frame...
+                if button_2.status == STARTED:
+                    # update params
+                    pass
+                    # check whether button_2 has been pressed
+                    if button_2.isClicked:
+                        if not button_2.wasClicked:
+                            # if this is a new click, store time of first click and clicked until
+                            button_2.timesOn.append(button_2.buttonClock.getTime())
+                            button_2.timesOff.append(button_2.buttonClock.getTime())
+                        elif len(button_2.timesOff):
+                            # if click is continuing from last frame, update time of clicked until
+                            button_2.timesOff[-1] = button_2.buttonClock.getTime()
+                        if not button_2.wasClicked:
+                            # run callback code when button_2 is clicked
+                            globalClock.reset()
+                # take note of whether button_2 was clicked, so that next frame we know if clicks are new
+                button_2.wasClicked = button_2.isClicked and button_2.status == STARTED
                 
                 # check for quit (typically the Esc key)
                 if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -752,26 +831,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             inner_trials.addData('logging_mouse.rightButton', logging_mouse.rightButton)
             inner_trials.addData('logging_mouse.time', logging_mouse.time)
             # store data for inner_trials (TrialHandler)
-            x, y = mouse_score.getPos()
-            buttons = mouse_score.getPressed()
-            if sum(buttons):
-                # check if the mouse was inside our 'clickable' objects
-                gotValidClick = False
-                clickableList = environmenttools.getFromNames(click_square, namespace=locals())
-                for obj in clickableList:
-                    # is this object clicked on?
-                    if obj.contains(mouse_score):
-                        gotValidClick = True
-                        mouse_score.clicked_name.append(obj.name)
-                if not gotValidClick:
-                    mouse_score.clicked_name.append(None)
-            inner_trials.addData('mouse_score.x', x)
-            inner_trials.addData('mouse_score.y', y)
-            inner_trials.addData('mouse_score.leftButton', buttons[0])
-            inner_trials.addData('mouse_score.midButton', buttons[1])
-            inner_trials.addData('mouse_score.rightButton', buttons[2])
-            if len(mouse_score.clicked_name):
-                inner_trials.addData('mouse_score.clicked_name', mouse_score.clicked_name[0])
+            inner_trials.addData('mouse_score.x', mouse_score.x)
+            inner_trials.addData('mouse_score.y', mouse_score.y)
+            inner_trials.addData('mouse_score.leftButton', mouse_score.leftButton)
+            inner_trials.addData('mouse_score.midButton', mouse_score.midButton)
+            inner_trials.addData('mouse_score.rightButton', mouse_score.rightButton)
+            inner_trials.addData('mouse_score.time', mouse_score.time)
+            inner_trials.addData('mouse_score.corr', mouse_score.corr)
+            inner_trials.addData('mouse_score.clicked_name', mouse_score.clicked_name)
+            inner_trials.addData('button_2.numClicks', button_2.numClicks)
+            if button_2.numClicks:
+               inner_trials.addData('button_2.timesOn', button_2.timesOn)
+               inner_trials.addData('button_2.timesOff', button_2.timesOff)
+            else:
+               inner_trials.addData('button_2.timesOn', "")
+               inner_trials.addData('button_2.timesOff', "")
             # the Routine "main_square_exp_2" was not non-slip safe, so reset the non-slip timer
             routineTimer.reset()
             

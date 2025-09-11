@@ -1,0 +1,54 @@
+##########################################################################################################
+## This is when the instructions end:
+
+globalClock.reset()  # Resets the global timer to 0
+stop_routine = False
+
+random_interval
+
+
+##########################################################################################################
+##########################################################################################################
+##########################################################################################################
+random_interval
+
+
+Attribute	What it gives you
+trials2.thisTrialN	Trial index in that loop (0-based)
+trials2.thisRepN	Current repetition of that loop
+trials2.thisIndex	Index of current row in the conditions file
+trials2.thisN	Global trial number across all loops
+trials2.trialList	List of dicts with conditions
+trials2._trialClock	Internal Clock object for this loop
+
+
+if globalClock.getTime() > end_time:#  if t > end_time:
+    print('Phase time expired, stopped routine!')
+#    Trials_exp_2.finished = True
+    continueRoutine = False
+    stop_routine = True
+
+
+phase_time = core.Clock()  # Start a new timer
+
+
+
+
+
+
+if t >= random_interval:  # If the routine has been running for 15 seconds
+    continueRoutine = False  # End the routine
+    if points is not None:
+        try:
+            if float(points) >= 0:
+                clicked = True
+                # score += float(points)  # re-enable if needed
+        except Exception as e:
+            print(f"Points value is invalid: {points} ({e})")
+    else:
+        print("Warning: points is None, skipping points check.")
+
+
+
+
+win.color = background 

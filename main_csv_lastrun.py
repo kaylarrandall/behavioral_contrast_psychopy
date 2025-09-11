@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 11, 2025, at 18:43
+    on September 11, 2025, at 19:09
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -737,6 +737,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             mouse_score.clicked_name = []
             gotValidClick = False  # until a click is received
             mouse_score.mouseClock.reset()
+            # Run 'Begin Routine' code from code
+            thisExp.addData("score", score)
             # reset clock_reset_button to account for continued clicks & clear times on/off
             clock_reset_button.reset()
             score_main_screen.setText(score)

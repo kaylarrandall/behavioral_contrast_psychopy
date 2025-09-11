@@ -280,8 +280,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="score = 0&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="score = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="psychoJS.experiment.addData(&quot;score&quot;, score);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="thisExp.addData(&quot;score&quot;, score)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="if globalClock.getTime() &gt; end_time:&amp;#10;    print(f'inner_trials.nRemaining{inner_trials.nRemaining}')&amp;#10;    print(f'Skipping{inner_trials.nRemaining} trials')&amp;#10;    print(f'Time: global:{globalClock.getTime()} end time {end_time}')&amp;#10;    print(f'background{background}')&amp;#10;    skip = int(inner_trials.nRemaining)&amp;#10;    inner_trials.skipTrials(skip)&amp;#10;    continueRoutine = False" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="if ((globalClock.getTime() &gt; end_time)) {&amp;#10;    console.log(`inner_trials.nRemaining${inner_trials.nRemaining}`);&amp;#10;    console.log(`Skipping${inner_trials.nRemaining} trials`);&amp;#10;    console.log(`Time: global:${globalClock.getTime()} end time ${end_time}`);&amp;#10;    console.log(`background${background}`);&amp;#10;    skip = Number.parseInt(inner_trials.nRemaining);&amp;#10;    inner_trials.skipTrials(skip);&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>

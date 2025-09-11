@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 11, 2025, at 15:40
+    on September 11, 2025, at 16:43
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -68,7 +68,7 @@ or run the experiment with `--pilot` as an argument. To change what pilot
 PILOTING = core.setPilotModeFromArgs()
 # start off with values from experiment settings
 _fullScr = True
-_winSize = [1920, 1080]
+_winSize = [900, 1600]
 # if in pilot mode, apply overrides according to preferences
 if PILOTING:
     # force windowed mode
@@ -192,7 +192,7 @@ def setupWindow(expInfo=None, win=None):
     if win is None:
         # if not given a window to setup, make one
         win = visual.Window(
-            size=_winSize, fullscr=_fullScr, screen=2,
+            size=_winSize, fullscr=_fullScr, screen=0,
             winType='pyglet', allowGUI=True, allowStencil=False,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
@@ -736,6 +736,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             mouse_score.clicked_name = []
             gotValidClick = False  # until a click is received
             mouse_score.mouseClock.reset()
+            # Run 'Begin Routine' code from code
+            inner_trials.addData("score", score)
             # reset clock_reset_button to account for continued clicks & clear times on/off
             clock_reset_button.reset()
             score_main_screen.setText(score)
@@ -844,6 +846,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     mouse_score.tStart = t  # local t and not account for scr refresh
                     mouse_score.tStartRefresh = tThisFlipGlobal  # on global time
                     win.timeOnFlip(mouse_score, 'tStartRefresh')  # time at next scr refresh
+                    # add timestamp to datafile
+                    thisExp.addData('mouse_score.started', t)
                     # update status
                     mouse_score.status = STARTED
                     prevButtonState = mouse_score.getPressed()  # if button is down already this ISN'T a new click
@@ -1162,7 +1166,22 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                             continueRoutine = False
                         if not button.wasClicked:
                             # run callback code when button is clicked
-                            score += points
+                            try:
+                             if points is not None:
+                              score += float(points)
+                              print(f"Button pressed! Points: {points}, New Score: {score}")
+                            
+                              # Log to data file (choose your loop: inner or outer)
+                              try:
+                               inner_trials.addData("score", score)
+                              except:
+                               print("Warning: Could not log score to inner_trials")
+                            
+                             else:
+                              print("Warning: points is None, no score added.")
+                            
+                            except Exception as e:
+                             print(f"Error updating score: {e}")
                 # take note of whether button was clicked, so that next frame we know if clicks are new
                 button.wasClicked = button.isClicked and button.status == STARTED
                 
@@ -1521,6 +1540,7 @@ def quit(thisExp, win=None, thisSession=None):
 # if running this experiment as a script...
 if __name__ == '__main__':
     # call all functions in order
+    expInfo = showExpInfoDlg(expInfo=expInfo)
     thisExp = setupData(expInfo=expInfo)
     logFile = setupLogging(filename=thisExp.dataFileName)
     win = setupWindow(expInfo=expInfo)

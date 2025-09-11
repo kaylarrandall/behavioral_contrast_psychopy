@@ -273,7 +273,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f'''&amp;#10;score:{score}&amp;#10;trial clock {int(t)}&amp;#10;score interval:{scoring_interval}&amp;#10;Global Clock: {int(globalClock.getTime())}&amp;#10;Core Clock:{int(core.getTime())}&amp;#10;end time: {end_time}&amp;#10;points: {points}&amp;#10;background: {background}&amp;#10;&amp;#10;'''" valType="str" updates="set every frame" name="text"/>
+        <Param val="$f'''&amp;#10;score:{score}&amp;#10;points awarded next: {points}&amp;#10;trial clock {int(t)}&amp;#10;score interval:{scoring_interval}&amp;#10;Global Clock: {int(globalClock.getTime())}&amp;#10;end time: {end_time}&amp;#10;&amp;#10;Core Clock:{int(core.getTime())}&amp;#10;points: {points}&amp;#10;background: {background}&amp;#10;&amp;#10;'''" valType="str" updates="set every frame" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="1" valType="num" updates="constant" name="wrapWidth"/>

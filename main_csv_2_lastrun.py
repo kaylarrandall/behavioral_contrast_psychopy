@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 11, 2025, at 15:37
+    on September 11, 2025, at 15:40
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -902,12 +902,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # update params
                     big_text.setText(f'''
                     score:{score}
+                    points awarded next: {points}
                     trial clock {int(t)}
                     score interval:{scoring_interval}
-                    trial clock must be greater than interval to score
                     Global Clock: {int(globalClock.getTime())}
-                    Core Clock:{int(core.getTime())}
                     end time: {end_time}
+                    
+                    Core Clock:{int(core.getTime())}
                     points: {points}
                     background: {background}
                     

@@ -7,7 +7,7 @@
     <Param val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code" updates="None" name="Data filename"/>
     <Param val="True" valType="bool" updates="None" name="Enable Escape"/>
     <Param val="Thank you for your patience." valType="str" updates="None" name="End Message"/>
-    <Param val="{'participant': 'f&quot;{randint(0, 999999):06.0f}&quot;', 'session': '001', 'Gender': '[&quot;Male&quot;, &quot;Female&quot;, &quot;Non-binary&quot;, &quot;Prefer not to say&quot;]', 'Age': &quot;[18,19,20,21,22,23,24,'26+']&quot;, 'I consent*': 'False'}" valType="code" updates="None" name="Experiment info"/>
+    <Param val="{'participant': 'f&quot;{randint(0, 999999):06.0f}&quot;', 'session': '001', 'Gender': '[&quot;Male&quot;, &quot;Female&quot;, &quot;Non-binary&quot;, &quot;Prefer not to say&quot;]', 'Age': &quot;[18,19,20,21,22,23,24,'26+']&quot;, 'I consent*': 'False', 'experiment_selection': '[&quot;bin\\.csv_long\\main_loop_long.csv&quot;,&quot;bin\\.csv_short\\main_loop_short.csv&quot;]'}" valType="code" updates="None" name="Experiment info"/>
     <Param val="True" valType="bool" updates="None" name="Force stereo"/>
     <Param val="True" valType="bool" updates="None" name="Full-screen window"/>
     <Param val="" valType="str" updates="None" name="HTML path"/>
@@ -25,7 +25,7 @@
     <Param val="True" valType="bool" updates="None" name="Show mouse"/>
     <Param val="height" valType="str" updates="None" name="Units"/>
     <Param val="" valType="str" updates="None" name="Use version"/>
-    <Param val="[900, 1600]" valType="list" updates="None" name="Window size (pixels)"/>
+    <Param val="[1920, 1080]" valType="list" updates="None" name="Window size (pixels)"/>
     <Param val="none" valType="str" updates="None" name="backgroundFit"/>
     <Param val="" valType="str" updates="None" name="backgroundImg"/>
     <Param val="avg" valType="str" updates="None" name="blendMode"/>
@@ -545,7 +545,7 @@
     <LoopInitiator loopType="TrialHandler" name="outer_trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('compnt_file', 'bin/.csv/component_1.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_2.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_1.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_2.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_1.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_2.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_1.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_2.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_3.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_4.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_3.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_4.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_3.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_4.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_3.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_4.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_1.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_2.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_1.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_2.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_1.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_2.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_1.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_2.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_3.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_4.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_3.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_4.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_3.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_4.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_3.csv')]), OrderedDict([('compnt_file', 'bin/.csv/component_4.csv')])]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="bin/.csv/main_loop.csv" valType="file"/>
+      <Param name="conditionsFile" updates="None" val="$expInfo['experiment_selection']" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>

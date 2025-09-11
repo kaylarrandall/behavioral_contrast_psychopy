@@ -1,3 +1,9 @@
+bin\.csv_short\main_loop_short.csv
+bin\.csv_long\main_loop_long.csv
+
+
+
+
 
 globalClock.getTime()
 globalClock.getLastResetTime()

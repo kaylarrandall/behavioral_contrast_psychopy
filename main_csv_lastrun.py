@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 11, 2025, at 17:37
+    on September 11, 2025, at 18:41
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -52,6 +52,7 @@ expInfo = {
     'Gender': ["Male", "Female", "Non-binary", "Prefer not to say"],
     'Age': [18,19,20,21,22,23,24,'26+'],
     'I consent*': False,
+    'experiment_selection': ["bin\.csv_long\main_loop_long.csv","bin\.csv_short\main_loop_short.csv"],
     'date|hid': data.getDateStr(),
     'expName|hid': expName,
     'expVersion|hid': expVersion,
@@ -68,7 +69,7 @@ or run the experiment with `--pilot` as an argument. To change what pilot
 PILOTING = core.setPilotModeFromArgs()
 # start off with values from experiment settings
 _fullScr = True
-_winSize = [900, 1600]
+_winSize = [1920, 1080]
 # if in pilot mode, apply overrides according to preferences
 if PILOTING:
     # force windowed mode
@@ -647,7 +648,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         method='sequential', 
         extraInfo=expInfo, 
         originPath=-1, 
-        trialList=data.importConditions('bin/.csv/main_loop.csv'), 
+        trialList=data.importConditions(expInfo['experiment_selection']), 
         seed=None, 
     )
     thisExp.addLoop(outer_trials)  # add the loop to the experiment

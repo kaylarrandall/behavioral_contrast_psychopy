@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 11, 2025, at 14:43
+    on September 11, 2025, at 15:37
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -193,7 +193,7 @@ def setupWindow(expInfo=None, win=None):
         # if not given a window to setup, make one
         win = visual.Window(
             size=_winSize, fullscr=_fullScr, screen=2,
-            winType='pyglet', allowGUI=True, allowStencil=True,
+            winType='pyglet', allowGUI=True, allowStencil=False,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
             blendMode='avg', useFBO=True,
@@ -365,7 +365,19 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # Start Code - component code to be run after the window creation
     
-    # --- Initialize components for Routine "main_square_exp_2" ---
+    # --- Initialize components for Routine "exp_Instructions" ---
+    Instructions_phase_1 = visual.TextStim(win=win, name='Instructions_phase_1',
+        text='Clicking on the white square sometimes get you points. When points are are earned, click on the other white square that appears and you will earn your points. Please continue to click on the computer screen to earn points for the duration of the experiment. If you have questions, raise your hand and a researcher will come in and help you.',
+        font='Arial',
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.3, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
+    mouse_3 = event.Mouse(win=win)
+    x, y = [None, None]
+    mouse_3.mouseClock = core.Clock()
+    
+    # --- Initialize components for Routine "main_square_screen" ---
     logging_mouse = event.Mouse(win=win)
     x, y = [None, None]
     logging_mouse.mouseClock = core.Clock()
@@ -388,11 +400,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         depth=-3.0);
     # Run 'Begin Experiment' code from code
     score = 0
-    button_2 = visual.ButtonStim(win, 
+    
+    clock_reset_button = visual.ButtonStim(win, 
         text='Reset Global Clock', font='Arvo',
-        pos=(0.5, 0.5),
+        pos=(0.5, 0.45),
         letterHeight=0.025,
-        size=(0.3, 0.3), 
+        size=(0.3, 0.1), 
         ori=0.0
         ,borderWidth=2.0,
         fillColor='black', borderColor='red',
@@ -401,20 +414,27 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         bold=True, italic=False,
         padding=None,
         anchor='center',
-        name='button_2',
+        name='clock_reset_button',
         depth=-5
     )
-    button_2.buttonClock = core.Clock()
+    clock_reset_button.buttonClock = core.Clock()
+    score_main_screen = visual.TextStim(win=win, name='score_main_screen',
+        text='',
+        font='Arial',
+        pos=(-0.8, 0.44), draggable=False, height=0.15, wrapWidth=1.0, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-6.0);
     
-    # --- Initialize components for Routine "points_square_exp_2" ---
+    # --- Initialize components for Routine "points_square_screen" ---
     mouse_logging_2 = event.Mouse(win=win)
     x, y = [None, None]
     mouse_logging_2.mouseClock = core.Clock()
     button = visual.ButtonStim(win, 
         text=None, font='Arvo',
-        pos=(0.4, -0.4),
+        pos=(0.5, -0.4),
         letterHeight=0.05,
-        size=(0.1, 0.1), 
+        size=(0.15, 0.15), 
         ori=0.0
         ,borderWidth=0.0,
         fillColor='darkgrey', borderColor=None,
@@ -427,24 +447,15 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         depth=-1
     )
     button.buttonClock = core.Clock()
-    score_textbox_2 = visual.TextBox2(
-         win, text='', placeholder='Type here...', font='Arial',
-         ori=0.0, pos=(-0.7, 0.4), draggable=False,      letterHeight=0.1,
-         size=(0.2, 0.2), borderWidth=0.0,
-         color=[-1.0000, -1.0000, -1.0000], colorSpace='rgb',
-         opacity=None,
-         bold=False, italic=False,
-         lineSpacing=1.0, speechPoint=None,
-         padding=0.0, alignment='center',
-         anchor='center', overflow='visible',
-         fillColor=None, borderColor=None,
-         flipHoriz=False, flipVert=False, languageStyle='LTR',
-         editable=False,
-         name='score_textbox_2',
-         depth=-2, autoLog=False,
-    )
+    score_points_screen = visual.TextStim(win=win, name='score_points_screen',
+        text='',
+        font='Arial',
+        pos=(-0.8, 0.44), draggable=False, height=0.15, wrapWidth=1.0, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-2.0);
     
-    # --- Initialize components for Routine "routine_1" ---
+    # --- Initialize components for Routine "blackout_screen" ---
     mouse = event.Mouse(win=win)
     x, y = [None, None]
     mouse.mouseClock = core.Clock()
@@ -483,6 +494,151 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     expInfo['expStart'] = data.getDateStr(
         format='%Y-%m-%d %Hh%M.%S.%f %z', fractionalSecondDigits=6
     )
+    
+    # --- Prepare to start Routine "exp_Instructions" ---
+    # create an object to store info about Routine exp_Instructions
+    exp_Instructions = data.Routine(
+        name='exp_Instructions',
+        components=[Instructions_phase_1, mouse_3],
+    )
+    exp_Instructions.status = NOT_STARTED
+    continueRoutine = True
+    # update component parameters for each repeat
+    # setup some python lists for storing info about the mouse_3
+    mouse_3.x = []
+    mouse_3.y = []
+    mouse_3.leftButton = []
+    mouse_3.midButton = []
+    mouse_3.rightButton = []
+    mouse_3.time = []
+    gotValidClick = False  # until a click is received
+    # store start times for exp_Instructions
+    exp_Instructions.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+    exp_Instructions.tStart = globalClock.getTime(format='float')
+    exp_Instructions.status = STARTED
+    thisExp.addData('exp_Instructions.started', exp_Instructions.tStart)
+    exp_Instructions.maxDuration = None
+    # keep track of which components have finished
+    exp_InstructionsComponents = exp_Instructions.components
+    for thisComponent in exp_Instructions.components:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    frameN = -1
+    
+    # --- Run Routine "exp_Instructions" ---
+    exp_Instructions.forceEnded = routineForceEnded = not continueRoutine
+    while continueRoutine:
+        # get current time
+        t = routineTimer.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *Instructions_phase_1* updates
+        
+        # if Instructions_phase_1 is starting this frame...
+        if Instructions_phase_1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            Instructions_phase_1.frameNStart = frameN  # exact frame index
+            Instructions_phase_1.tStart = t  # local t and not account for scr refresh
+            Instructions_phase_1.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(Instructions_phase_1, 'tStartRefresh')  # time at next scr refresh
+            # update status
+            Instructions_phase_1.status = STARTED
+            Instructions_phase_1.setAutoDraw(True)
+        
+        # if Instructions_phase_1 is active this frame...
+        if Instructions_phase_1.status == STARTED:
+            # update params
+            pass
+        # *mouse_3* updates
+        
+        # if mouse_3 is starting this frame...
+        if mouse_3.status == NOT_STARTED and t >= 2-frameTolerance:
+            # keep track of start time/frame for later
+            mouse_3.frameNStart = frameN  # exact frame index
+            mouse_3.tStart = t  # local t and not account for scr refresh
+            mouse_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(mouse_3, 'tStartRefresh')  # time at next scr refresh
+            # update status
+            mouse_3.status = STARTED
+            prevButtonState = mouse_3.getPressed()  # if button is down already this ISN'T a new click
+        if mouse_3.status == STARTED:  # only update if started and not finished!
+            buttons = mouse_3.getPressed()
+            if buttons != prevButtonState:  # button state changed?
+                prevButtonState = buttons
+                if sum(buttons) > 0:  # state changed to a new click
+                    pass
+                    x, y = mouse_3.getPos()
+                    mouse_3.x.append(x)
+                    mouse_3.y.append(y)
+                    buttons = mouse_3.getPressed()
+                    mouse_3.leftButton.append(buttons[0])
+                    mouse_3.midButton.append(buttons[1])
+                    mouse_3.rightButton.append(buttons[2])
+                    mouse_3.time.append(globalClock.getTime())
+                    
+                    continueRoutine = False  # end routine on response
+        
+        # check for quit (typically the Esc key)
+        if defaultKeyboard.getKeys(keyList=["escape"]):
+            thisExp.status = FINISHED
+        if thisExp.status == FINISHED or endExpNow:
+            endExperiment(thisExp, win=win)
+            return
+        # pause experiment here if requested
+        if thisExp.status == PAUSED:
+            pauseExperiment(
+                thisExp=thisExp, 
+                win=win, 
+                timers=[routineTimer, globalClock], 
+                currentRoutine=exp_Instructions,
+            )
+            # skip the frame we paused on
+            continue
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            exp_Instructions.forceEnded = routineForceEnded = True
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in exp_Instructions.components:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # --- Ending Routine "exp_Instructions" ---
+    for thisComponent in exp_Instructions.components:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # store stop times for exp_Instructions
+    exp_Instructions.tStop = globalClock.getTime(format='float')
+    exp_Instructions.tStopRefresh = tThisFlipGlobal
+    thisExp.addData('exp_Instructions.stopped', exp_Instructions.tStop)
+    # store data for thisExp (ExperimentHandler)
+    thisExp.addData('mouse_3.x', mouse_3.x)
+    thisExp.addData('mouse_3.y', mouse_3.y)
+    thisExp.addData('mouse_3.leftButton', mouse_3.leftButton)
+    thisExp.addData('mouse_3.midButton', mouse_3.midButton)
+    thisExp.addData('mouse_3.rightButton', mouse_3.rightButton)
+    thisExp.addData('mouse_3.time', mouse_3.time)
+    # Run 'End Routine' code from code_2
+    globalClock.reset()
+    thisExp.nextEntry()
+    # the Routine "exp_Instructions" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
     outer_trials = data.TrialHandler2(
@@ -552,13 +708,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 for paramName in thisInner_trial:
                     globals()[paramName] = thisInner_trial[paramName]
             
-            # --- Prepare to start Routine "main_square_exp_2" ---
-            # create an object to store info about Routine main_square_exp_2
-            main_square_exp_2 = data.Routine(
-                name='main_square_exp_2',
-                components=[logging_mouse, click_square, mouse_score, big_text, button_2],
+            # --- Prepare to start Routine "main_square_screen" ---
+            # create an object to store info about Routine main_square_screen
+            main_square_screen = data.Routine(
+                name='main_square_screen',
+                components=[logging_mouse, click_square, mouse_score, big_text, clock_reset_button, score_main_screen],
             )
-            main_square_exp_2.status = NOT_STARTED
+            main_square_screen.status = NOT_STARTED
             continueRoutine = True
             # update component parameters for each repeat
             # setup some python lists for storing info about the logging_mouse
@@ -579,24 +735,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             mouse_score.corr = []
             mouse_score.clicked_name = []
             gotValidClick = False  # until a click is received
-            # reset button_2 to account for continued clicks & clear times on/off
-            button_2.reset()
-            # store start times for main_square_exp_2
-            main_square_exp_2.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-            main_square_exp_2.tStart = globalClock.getTime(format='float')
-            main_square_exp_2.status = STARTED
-            thisExp.addData('main_square_exp_2.started', main_square_exp_2.tStart)
-            main_square_exp_2.maxDuration = None
-            # skip Routine main_square_exp_2 if its 'Skip if' condition is True
-            main_square_exp_2.skipped = continueRoutine and not (globalClock.getTime() > end_time)
-            continueRoutine = main_square_exp_2.skipped
+            mouse_score.mouseClock.reset()
+            # reset clock_reset_button to account for continued clicks & clear times on/off
+            clock_reset_button.reset()
+            score_main_screen.setText(score)
+            # store start times for main_square_screen
+            main_square_screen.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+            main_square_screen.tStart = globalClock.getTime(format='float')
+            main_square_screen.status = STARTED
+            thisExp.addData('main_square_screen.started', main_square_screen.tStart)
+            main_square_screen.maxDuration = None
+            # skip Routine main_square_screen if its 'Skip if' condition is True
+            main_square_screen.skipped = continueRoutine and not (globalClock.getTime() > end_time)
+            continueRoutine = main_square_screen.skipped
             win.color = background
             win.colorSpace = 'rgb'
             win.backgroundImage = ''
             win.backgroundFit = 'none'
             # keep track of which components have finished
-            main_square_exp_2Components = main_square_exp_2.components
-            for thisComponent in main_square_exp_2.components:
+            main_square_screenComponents = main_square_screen.components
+            for thisComponent in main_square_screen.components:
                 thisComponent.tStart = None
                 thisComponent.tStop = None
                 thisComponent.tStartRefresh = None
@@ -608,8 +766,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             _timeToFirstFrame = win.getFutureFlipTime(clock="now")
             frameN = -1
             
-            # --- Run Routine "main_square_exp_2" ---
-            main_square_exp_2.forceEnded = routineForceEnded = not continueRoutine
+            # --- Run Routine "main_square_screen" ---
+            main_square_screen.forceEnded = routineForceEnded = not continueRoutine
             while continueRoutine:
                 # if trial has changed, end Routine now
                 if hasattr(thisInner_trial, 'status') and thisInner_trial.status == STOPPING:
@@ -686,8 +844,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     mouse_score.tStart = t  # local t and not account for scr refresh
                     mouse_score.tStartRefresh = tThisFlipGlobal  # on global time
                     win.timeOnFlip(mouse_score, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.addData('mouse_score.started', t)
                     # update status
                     mouse_score.status = STARTED
                     prevButtonState = mouse_score.getPressed()  # if button is down already this ISN'T a new click
@@ -722,7 +878,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                             mouse_score.leftButton.append(buttons[0])
                             mouse_score.midButton.append(buttons[1])
                             mouse_score.rightButton.append(buttons[2])
-                            mouse_score.time.append(globalClock.getTime())
+                            mouse_score.time.append(mouse_score.mouseClock.getTime())
                             if gotValidClick:
                                 continueRoutine = False  # end routine on response
                 
@@ -746,50 +902,75 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # update params
                     big_text.setText(f'''
                     score:{score}
+                    trial clock {int(t)}
                     score interval:{scoring_interval}
-                    clock {int(t)}
+                    trial clock must be greater than interval to score
                     Global Clock: {int(globalClock.getTime())}
                     Core Clock:{int(core.getTime())}
+                    end time: {end_time}
+                    points: {points}
+                    background: {background}
+                    
                     ''', log=False)
                 # Run 'Each Frame' code from code
                 if globalClock.getTime() > end_time:
-                    print(inner_trials.nRemaining)
+                    print(f'inner_trials.nRemaining{inner_trials.nRemaining}')
+                    print(f'Skipping{inner_trials.nRemaining} trials')
+                    print(f'Time: global:{globalClock.getTime()} end time {end_time}')
+                    print(f'background{background}')
                     skip = int(inner_trials.nRemaining)
                     inner_trials.skipTrials(skip)
-                # *button_2* updates
+                    continueRoutine = False
+                # *clock_reset_button* updates
                 
-                # if button_2 is starting this frame...
-                if button_2.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+                # if clock_reset_button is starting this frame...
+                if clock_reset_button.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
                     # keep track of start time/frame for later
-                    button_2.frameNStart = frameN  # exact frame index
-                    button_2.tStart = t  # local t and not account for scr refresh
-                    button_2.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(button_2, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'button_2.started')
+                    clock_reset_button.frameNStart = frameN  # exact frame index
+                    clock_reset_button.tStart = t  # local t and not account for scr refresh
+                    clock_reset_button.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(clock_reset_button, 'tStartRefresh')  # time at next scr refresh
                     # update status
-                    button_2.status = STARTED
-                    win.callOnFlip(button_2.buttonClock.reset)
-                    button_2.setAutoDraw(True)
+                    clock_reset_button.status = STARTED
+                    win.callOnFlip(clock_reset_button.buttonClock.reset)
+                    clock_reset_button.setAutoDraw(True)
                 
-                # if button_2 is active this frame...
-                if button_2.status == STARTED:
+                # if clock_reset_button is active this frame...
+                if clock_reset_button.status == STARTED:
                     # update params
                     pass
-                    # check whether button_2 has been pressed
-                    if button_2.isClicked:
-                        if not button_2.wasClicked:
+                    # check whether clock_reset_button has been pressed
+                    if clock_reset_button.isClicked:
+                        if not clock_reset_button.wasClicked:
                             # if this is a new click, store time of first click and clicked until
-                            button_2.timesOn.append(button_2.buttonClock.getTime())
-                            button_2.timesOff.append(button_2.buttonClock.getTime())
-                        elif len(button_2.timesOff):
+                            clock_reset_button.timesOn.append(routineTimer.getTime())
+                            clock_reset_button.timesOff.append(routineTimer.getTime())
+                        elif len(clock_reset_button.timesOff):
                             # if click is continuing from last frame, update time of clicked until
-                            button_2.timesOff[-1] = button_2.buttonClock.getTime()
-                        if not button_2.wasClicked:
-                            # run callback code when button_2 is clicked
+                            clock_reset_button.timesOff[-1] = routineTimer.getTime()
+                        if not clock_reset_button.wasClicked:
+                            # run callback code when clock_reset_button is clicked
                             globalClock.reset()
-                # take note of whether button_2 was clicked, so that next frame we know if clicks are new
-                button_2.wasClicked = button_2.isClicked and button_2.status == STARTED
+                # take note of whether clock_reset_button was clicked, so that next frame we know if clicks are new
+                clock_reset_button.wasClicked = clock_reset_button.isClicked and clock_reset_button.status == STARTED
+                
+                # *score_main_screen* updates
+                
+                # if score_main_screen is starting this frame...
+                if score_main_screen.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                    # keep track of start time/frame for later
+                    score_main_screen.frameNStart = frameN  # exact frame index
+                    score_main_screen.tStart = t  # local t and not account for scr refresh
+                    score_main_screen.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(score_main_screen, 'tStartRefresh')  # time at next scr refresh
+                    # update status
+                    score_main_screen.status = STARTED
+                    score_main_screen.setAutoDraw(True)
+                
+                # if score_main_screen is active this frame...
+                if score_main_screen.status == STARTED:
+                    # update params
+                    pass
                 
                 # check for quit (typically the Esc key)
                 if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -803,17 +984,17 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                         thisExp=thisExp, 
                         win=win, 
                         timers=[routineTimer, globalClock], 
-                        currentRoutine=main_square_exp_2,
+                        currentRoutine=main_square_screen,
                     )
                     # skip the frame we paused on
                     continue
                 
                 # check if all components have finished
                 if not continueRoutine:  # a component has requested a forced-end of Routine
-                    main_square_exp_2.forceEnded = routineForceEnded = True
+                    main_square_screen.forceEnded = routineForceEnded = True
                     break
                 continueRoutine = False  # will revert to True if at least one component still running
-                for thisComponent in main_square_exp_2.components:
+                for thisComponent in main_square_screen.components:
                     if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                         continueRoutine = True
                         break  # at least one component has not yet finished
@@ -822,14 +1003,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                     win.flip()
             
-            # --- Ending Routine "main_square_exp_2" ---
-            for thisComponent in main_square_exp_2.components:
+            # --- Ending Routine "main_square_screen" ---
+            for thisComponent in main_square_screen.components:
                 if hasattr(thisComponent, "setAutoDraw"):
                     thisComponent.setAutoDraw(False)
-            # store stop times for main_square_exp_2
-            main_square_exp_2.tStop = globalClock.getTime(format='float')
-            main_square_exp_2.tStopRefresh = tThisFlipGlobal
-            thisExp.addData('main_square_exp_2.stopped', main_square_exp_2.tStop)
+            # store stop times for main_square_screen
+            main_square_screen.tStop = globalClock.getTime(format='float')
+            main_square_screen.tStopRefresh = tThisFlipGlobal
+            thisExp.addData('main_square_screen.stopped', main_square_screen.tStop)
             setupWindow(expInfo=expInfo, win=win)
             # store data for inner_trials (TrialHandler)
             inner_trials.addData('logging_mouse.x', logging_mouse.x)
@@ -847,23 +1028,23 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             inner_trials.addData('mouse_score.time', mouse_score.time)
             inner_trials.addData('mouse_score.corr', mouse_score.corr)
             inner_trials.addData('mouse_score.clicked_name', mouse_score.clicked_name)
-            inner_trials.addData('button_2.numClicks', button_2.numClicks)
-            if button_2.numClicks:
-               inner_trials.addData('button_2.timesOn', button_2.timesOn)
-               inner_trials.addData('button_2.timesOff', button_2.timesOff)
+            inner_trials.addData('clock_reset_button.numClicks', clock_reset_button.numClicks)
+            if clock_reset_button.numClicks:
+               inner_trials.addData('clock_reset_button.timesOn', clock_reset_button.timesOn)
+               inner_trials.addData('clock_reset_button.timesOff', clock_reset_button.timesOff)
             else:
-               inner_trials.addData('button_2.timesOn', "")
-               inner_trials.addData('button_2.timesOff', "")
-            # the Routine "main_square_exp_2" was not non-slip safe, so reset the non-slip timer
+               inner_trials.addData('clock_reset_button.timesOn', "")
+               inner_trials.addData('clock_reset_button.timesOff', "")
+            # the Routine "main_square_screen" was not non-slip safe, so reset the non-slip timer
             routineTimer.reset()
             
-            # --- Prepare to start Routine "points_square_exp_2" ---
-            # create an object to store info about Routine points_square_exp_2
-            points_square_exp_2 = data.Routine(
-                name='points_square_exp_2',
-                components=[mouse_logging_2, button, score_textbox_2],
+            # --- Prepare to start Routine "points_square_screen" ---
+            # create an object to store info about Routine points_square_screen
+            points_square_screen = data.Routine(
+                name='points_square_screen',
+                components=[mouse_logging_2, button, score_points_screen],
             )
-            points_square_exp_2.status = NOT_STARTED
+            points_square_screen.status = NOT_STARTED
             continueRoutine = True
             # update component parameters for each repeat
             # setup some python lists for storing info about the mouse_logging_2
@@ -876,24 +1057,23 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             gotValidClick = False  # until a click is received
             # reset button to account for continued clicks & clear times on/off
             button.reset()
-            score_textbox_2.reset()
-            score_textbox_2.setText(score)
-            # store start times for points_square_exp_2
-            points_square_exp_2.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-            points_square_exp_2.tStart = globalClock.getTime(format='float')
-            points_square_exp_2.status = STARTED
-            thisExp.addData('points_square_exp_2.started', points_square_exp_2.tStart)
-            points_square_exp_2.maxDuration = 10
-            # skip Routine points_square_exp_2 if its 'Skip if' condition is True
-            points_square_exp_2.skipped = continueRoutine and not (globalClock.getTime() > end_time)
-            continueRoutine = points_square_exp_2.skipped
+            score_points_screen.setText(score)
+            # store start times for points_square_screen
+            points_square_screen.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+            points_square_screen.tStart = globalClock.getTime(format='float')
+            points_square_screen.status = STARTED
+            thisExp.addData('points_square_screen.started', points_square_screen.tStart)
+            points_square_screen.maxDuration = 10
+            # skip Routine points_square_screen if its 'Skip if' condition is True
+            points_square_screen.skipped = continueRoutine and not (globalClock.getTime() > end_time)
+            continueRoutine = points_square_screen.skipped
             win.color = background
             win.colorSpace = 'rgb'
             win.backgroundImage = ''
             win.backgroundFit = 'none'
             # keep track of which components have finished
-            points_square_exp_2Components = points_square_exp_2.components
-            for thisComponent in points_square_exp_2.components:
+            points_square_screenComponents = points_square_screen.components
+            for thisComponent in points_square_screen.components:
                 thisComponent.tStart = None
                 thisComponent.tStop = None
                 thisComponent.tStartRefresh = None
@@ -905,8 +1085,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             _timeToFirstFrame = win.getFutureFlipTime(clock="now")
             frameN = -1
             
-            # --- Run Routine "points_square_exp_2" ---
-            points_square_exp_2.forceEnded = routineForceEnded = not continueRoutine
+            # --- Run Routine "points_square_screen" ---
+            points_square_screen.forceEnded = routineForceEnded = not continueRoutine
             while continueRoutine:
                 # if trial has changed, end Routine now
                 if hasattr(thisInner_trial, 'status') and thisInner_trial.status == STOPPING:
@@ -918,8 +1098,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
                 # update/draw components on each frame
                 # is it time to end the Routine? (based on local clock)
-                if tThisFlip > points_square_exp_2.maxDuration-frameTolerance:
-                    points_square_exp_2.maxDurationReached = True
+                if tThisFlip > points_square_screen.maxDuration-frameTolerance:
+                    points_square_screen.maxDurationReached = True
                     continueRoutine = False
                 # *mouse_logging_2* updates
                 
@@ -985,21 +1165,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # take note of whether button was clicked, so that next frame we know if clicks are new
                 button.wasClicked = button.isClicked and button.status == STARTED
                 
-                # *score_textbox_2* updates
+                # *score_points_screen* updates
                 
-                # if score_textbox_2 is starting this frame...
-                if score_textbox_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # if score_points_screen is starting this frame...
+                if score_points_screen.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                     # keep track of start time/frame for later
-                    score_textbox_2.frameNStart = frameN  # exact frame index
-                    score_textbox_2.tStart = t  # local t and not account for scr refresh
-                    score_textbox_2.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(score_textbox_2, 'tStartRefresh')  # time at next scr refresh
+                    score_points_screen.frameNStart = frameN  # exact frame index
+                    score_points_screen.tStart = t  # local t and not account for scr refresh
+                    score_points_screen.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(score_points_screen, 'tStartRefresh')  # time at next scr refresh
                     # update status
-                    score_textbox_2.status = STARTED
-                    score_textbox_2.setAutoDraw(True)
+                    score_points_screen.status = STARTED
+                    score_points_screen.setAutoDraw(True)
                 
-                # if score_textbox_2 is active this frame...
-                if score_textbox_2.status == STARTED:
+                # if score_points_screen is active this frame...
+                if score_points_screen.status == STARTED:
                     # update params
                     pass
                 
@@ -1015,17 +1195,17 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                         thisExp=thisExp, 
                         win=win, 
                         timers=[routineTimer, globalClock], 
-                        currentRoutine=points_square_exp_2,
+                        currentRoutine=points_square_screen,
                     )
                     # skip the frame we paused on
                     continue
                 
                 # check if all components have finished
                 if not continueRoutine:  # a component has requested a forced-end of Routine
-                    points_square_exp_2.forceEnded = routineForceEnded = True
+                    points_square_screen.forceEnded = routineForceEnded = True
                     break
                 continueRoutine = False  # will revert to True if at least one component still running
-                for thisComponent in points_square_exp_2.components:
+                for thisComponent in points_square_screen.components:
                     if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                         continueRoutine = True
                         break  # at least one component has not yet finished
@@ -1034,14 +1214,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                     win.flip()
             
-            # --- Ending Routine "points_square_exp_2" ---
-            for thisComponent in points_square_exp_2.components:
+            # --- Ending Routine "points_square_screen" ---
+            for thisComponent in points_square_screen.components:
                 if hasattr(thisComponent, "setAutoDraw"):
                     thisComponent.setAutoDraw(False)
-            # store stop times for points_square_exp_2
-            points_square_exp_2.tStop = globalClock.getTime(format='float')
-            points_square_exp_2.tStopRefresh = tThisFlipGlobal
-            thisExp.addData('points_square_exp_2.stopped', points_square_exp_2.tStop)
+            # store stop times for points_square_screen
+            points_square_screen.tStop = globalClock.getTime(format='float')
+            points_square_screen.tStopRefresh = tThisFlipGlobal
+            thisExp.addData('points_square_screen.stopped', points_square_screen.tStop)
             setupWindow(expInfo=expInfo, win=win)
             # store data for inner_trials (TrialHandler)
             inner_trials.addData('mouse_logging_2.x', mouse_logging_2.x)
@@ -1057,7 +1237,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             else:
                inner_trials.addData('button.timesOn', "")
                inner_trials.addData('button.timesOff', "")
-            # the Routine "points_square_exp_2" was not non-slip safe, so reset the non-slip timer
+            # the Routine "points_square_screen" was not non-slip safe, so reset the non-slip timer
             routineTimer.reset()
             # mark thisInner_trial as finished
             if hasattr(thisInner_trial, 'status'):
@@ -1090,30 +1270,30 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             stimOut=params,
             dataOut=['n','all_mean','all_std', 'all_raw'])
         
-        # --- Prepare to start Routine "routine_1" ---
-        # create an object to store info about Routine routine_1
-        routine_1 = data.Routine(
-            name='routine_1',
+        # --- Prepare to start Routine "blackout_screen" ---
+        # create an object to store info about Routine blackout_screen
+        blackout_screen = data.Routine(
+            name='blackout_screen',
             components=[mouse, Instructions_phase],
         )
-        routine_1.status = NOT_STARTED
+        blackout_screen.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
         # setup some python lists for storing info about the mouse
         gotValidClick = False  # until a click is received
-        # store start times for routine_1
-        routine_1.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        routine_1.tStart = globalClock.getTime(format='float')
-        routine_1.status = STARTED
-        thisExp.addData('routine_1.started', routine_1.tStart)
-        routine_1.maxDuration = 3
+        # store start times for blackout_screen
+        blackout_screen.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        blackout_screen.tStart = globalClock.getTime(format='float')
+        blackout_screen.status = STARTED
+        thisExp.addData('blackout_screen.started', blackout_screen.tStart)
+        blackout_screen.maxDuration = 3
         win.color = [-1.0000, -1.0000, -1.0000]
         win.colorSpace = 'rgb'
         win.backgroundImage = ''
         win.backgroundFit = 'none'
         # keep track of which components have finished
-        routine_1Components = routine_1.components
-        for thisComponent in routine_1.components:
+        blackout_screenComponents = blackout_screen.components
+        for thisComponent in blackout_screen.components:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -1125,8 +1305,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
         frameN = -1
         
-        # --- Run Routine "routine_1" ---
-        routine_1.forceEnded = routineForceEnded = not continueRoutine
+        # --- Run Routine "blackout_screen" ---
+        blackout_screen.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # if trial has changed, end Routine now
             if hasattr(thisOuter_trial, 'status') and thisOuter_trial.status == STOPPING:
@@ -1138,8 +1318,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             # is it time to end the Routine? (based on local clock)
-            if tThisFlip > routine_1.maxDuration-frameTolerance:
-                routine_1.maxDurationReached = True
+            if tThisFlip > blackout_screen.maxDuration-frameTolerance:
+                blackout_screen.maxDurationReached = True
                 continueRoutine = False
             # Run 'Each Frame' code from code_4
             #win.color =  (0,0,0) #black #background # (1.0000, 1.0000, 1.0000)
@@ -1154,7 +1334,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 win.timeOnFlip(mouse, 'tStartRefresh')  # time at next scr refresh
                 # update status
                 mouse.status = STARTED
-                prevButtonState = mouse.getPressed()  # if button is down already this ISN'T a new click
+                prevButtonState = [0, 0, 0]  # if now button is down we will treat as 'new' click
             if mouse.status == STARTED:  # only update if started and not finished!
                 buttons = mouse.getPressed()
                 if buttons != prevButtonState:  # button state changed?
@@ -1192,17 +1372,17 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     thisExp=thisExp, 
                     win=win, 
                     timers=[routineTimer, globalClock], 
-                    currentRoutine=routine_1,
+                    currentRoutine=blackout_screen,
                 )
                 # skip the frame we paused on
                 continue
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
-                routine_1.forceEnded = routineForceEnded = True
+                blackout_screen.forceEnded = routineForceEnded = True
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in routine_1.components:
+            for thisComponent in blackout_screen.components:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -1211,14 +1391,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # --- Ending Routine "routine_1" ---
-        for thisComponent in routine_1.components:
+        # --- Ending Routine "blackout_screen" ---
+        for thisComponent in blackout_screen.components:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        # store stop times for routine_1
-        routine_1.tStop = globalClock.getTime(format='float')
-        routine_1.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('routine_1.stopped', routine_1.tStop)
+        # store stop times for blackout_screen
+        blackout_screen.tStop = globalClock.getTime(format='float')
+        blackout_screen.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('blackout_screen.stopped', blackout_screen.tStop)
         setupWindow(expInfo=expInfo, win=win)
         # Run 'End Routine' code from code_4
         globalClock.reset()  # Resets the global timer to 0
@@ -1231,7 +1411,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         outer_trials.addData('mouse.leftButton', buttons[0])
         outer_trials.addData('mouse.midButton', buttons[1])
         outer_trials.addData('mouse.rightButton', buttons[2])
-        # the Routine "routine_1" was not non-slip safe, so reset the non-slip timer
+        # the Routine "blackout_screen" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         # mark thisOuter_trial as finished
         if hasattr(thisOuter_trial, 'status'):

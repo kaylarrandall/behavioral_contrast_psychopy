@@ -160,7 +160,7 @@
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
         <Param val="main_square_exp_2" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="globalClock.getTime() &gt; end_time" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="useWindowParams"/>
@@ -256,7 +256,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f'''&amp;#10;score:{score}&amp;#10;score interval:{scoring_interval}&amp;#10;clock {int(t)}&amp;#10;Global Clock: {int(globalClock.getTime())}&amp;#10;Core Clock:{int(core.getTime())}&amp;#10;'''" valType="str" updates="set every frame" name="text"/>
+        <Param val="$f'''&amp;#10;score:{score}&amp;#10;score interval:{scoring_interval}&amp;#10;clock {int(t)}&amp;#10;Global Clock: {int(globalClock.getTime())}&amp;#10;Core Clock:{int(core.getTime())}&amp;#10;end time: {end_time}&amp;#10;&amp;#10;'''" valType="str" updates="set every frame" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="1" valType="num" updates="constant" name="wrapWidth"/>
@@ -269,8 +269,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="if globalClock.getTime() &gt; end_time:&amp;#10;    print(inner_trials.nRemaining)&amp;#10;    skip = int(inner_trials.nRemaining)&amp;#10;    inner_trials.skipTrials(skip)" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="if ((globalClock.getTime() &gt; end_time)) {&amp;#10;    console.log(inner_trials.nRemaining);&amp;#10;    skip = Number.parseInt(inner_trials.nRemaining);&amp;#10;    inner_trials.skipTrials(skip);&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
@@ -327,7 +327,7 @@
         <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
         <Param val="points_square_exp_2" valType="code" updates="None" name="name"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="globalClock.getTime() &gt; end_time" valType="code" updates="constant" name="skipIf"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="10" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="useWindowParams"/>
@@ -454,14 +454,14 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="#win.color =  (0,0,0) #black #background # (1.0000, 1.0000, 1.0000)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="#win.color =  (0,0,0) #black #background # (1.0000, 1.0000, 1.0000)" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="globalClock.reset();&amp;#10;stop_routine = false;&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="globalClock.reset()  # Resets the global timer to 0&amp;#10;stop_routine = False" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="globalClock.reset();&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="globalClock.reset()  # Resets the global timer to 0&amp;#10;# stop_routine = False" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_4" valType="code" updates="None" name="name"/>
       </CodeComponent>

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 11, 2025, at 14:32
+    on September 11, 2025, at 14:43
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -587,6 +587,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             main_square_exp_2.status = STARTED
             thisExp.addData('main_square_exp_2.started', main_square_exp_2.tStart)
             main_square_exp_2.maxDuration = None
+            # skip Routine main_square_exp_2 if its 'Skip if' condition is True
+            main_square_exp_2.skipped = continueRoutine and not (globalClock.getTime() > end_time)
+            continueRoutine = main_square_exp_2.skipped
             win.color = background
             win.colorSpace = 'rgb'
             win.backgroundImage = ''
@@ -748,6 +751,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     Global Clock: {int(globalClock.getTime())}
                     Core Clock:{int(core.getTime())}
                     ''', log=False)
+                # Run 'Each Frame' code from code
+                if globalClock.getTime() > end_time:
+                    print(inner_trials.nRemaining)
+                    skip = int(inner_trials.nRemaining)
+                    inner_trials.skipTrials(skip)
                 # *button_2* updates
                 
                 # if button_2 is starting this frame...
@@ -876,6 +884,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             points_square_exp_2.status = STARTED
             thisExp.addData('points_square_exp_2.started', points_square_exp_2.tStart)
             points_square_exp_2.maxDuration = 10
+            # skip Routine points_square_exp_2 if its 'Skip if' condition is True
+            points_square_exp_2.skipped = continueRoutine and not (globalClock.getTime() > end_time)
+            continueRoutine = points_square_exp_2.skipped
             win.color = background
             win.colorSpace = 'rgb'
             win.backgroundImage = ''
@@ -1088,8 +1099,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         routine_1.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
-        # Run 'Begin Routine' code from code_4
-        #win.color =  (0,0,0) #black #background # (1.0000, 1.0000, 1.0000)
         # setup some python lists for storing info about the mouse
         gotValidClick = False  # until a click is received
         # store start times for routine_1
@@ -1213,7 +1222,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         setupWindow(expInfo=expInfo, win=win)
         # Run 'End Routine' code from code_4
         globalClock.reset()  # Resets the global timer to 0
-        stop_routine = False
+        # stop_routine = False
         # store data for outer_trials (TrialHandler)
         x, y = mouse.getPos()
         buttons = mouse.getPressed()

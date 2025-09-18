@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 11, 2025, at 19:09
+    on September 17, 2025, at 21:37
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -138,7 +138,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\Michael\\OneDrive - Georgia Southern University\\4_RESEARCH\\behavior_contrast\\behavioral_contrast_psychopy\\main_csv_lastrun.py',
+        originPath='C:\\Users\\Michael\\OneDrive - Georgia Southern University\\4_RESEARCH\\behavior_contrast\\behavior_contrast_kaylarandall\\behavioral_contrast_psychopy\\main_csv_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -193,7 +193,7 @@ def setupWindow(expInfo=None, win=None):
     if win is None:
         # if not given a window to setup, make one
         win = visual.Window(
-            size=_winSize, fullscr=_fullScr, screen=0,
+            size=_winSize, fullscr=_fullScr, screen=1,
             winType='pyglet', allowGUI=True, allowStencil=False,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
@@ -392,40 +392,16 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     mouse_score = event.Mouse(win=win)
     x, y = [None, None]
     mouse_score.mouseClock = core.Clock()
-    big_text = visual.TextStim(win=win, name='big_text',
-        text='',
-        font='Arial',
-        pos=(-.5, 0.1), draggable=False, height=0.06, wrapWidth=1.0, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-3.0);
     # Run 'Begin Experiment' code from code
     score = 0
     
-    clock_reset_button = visual.ButtonStim(win, 
-        text='Reset Global Clock', font='Arvo',
-        pos=(0.5, 0.45),
-        letterHeight=0.025,
-        size=(0.3, 0.1), 
-        ori=0.0
-        ,borderWidth=2.0,
-        fillColor='black', borderColor='red',
-        color='white', colorSpace='rgb',
-        opacity=None,
-        bold=True, italic=False,
-        padding=None,
-        anchor='center',
-        name='clock_reset_button',
-        depth=-5
-    )
-    clock_reset_button.buttonClock = core.Clock()
     score_main_screen = visual.TextStim(win=win, name='score_main_screen',
         text='',
         font='Arial',
         pos=(-0.8, 0.44), draggable=False, height=0.15, wrapWidth=1.0, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-6.0);
+        depth=-4.0);
     
     # --- Initialize components for Routine "points_square_screen" ---
     mouse_logging_2 = event.Mouse(win=win)
@@ -642,8 +618,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
-    outer_trials = data.TrialHandler2(
-        name='outer_trials',
+    outer_loop = data.TrialHandler2(
+        name='outer_loop',
         nReps=1.0, 
         method='sequential', 
         extraInfo=expInfo, 
@@ -651,29 +627,23 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         trialList=data.importConditions(expInfo['experiment_selection']), 
         seed=None, 
     )
-    thisExp.addLoop(outer_trials)  # add the loop to the experiment
-    thisOuter_trial = outer_trials.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb = thisOuter_trial.rgb)
-    if thisOuter_trial != None:
-        for paramName in thisOuter_trial:
-            globals()[paramName] = thisOuter_trial[paramName]
-    if thisSession is not None:
-        # if running in a Session with a Liaison client, send data up to now
-        thisSession.sendExperimentData()
+    thisExp.addLoop(outer_loop)  # add the loop to the experiment
+    thisOuter_loop = outer_loop.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisOuter_loop.rgb)
+    if thisOuter_loop != None:
+        for paramName in thisOuter_loop:
+            globals()[paramName] = thisOuter_loop[paramName]
     
-    for thisOuter_trial in outer_trials:
-        outer_trials.status = STARTED
-        if hasattr(thisOuter_trial, 'status'):
-            thisOuter_trial.status = STARTED
-        currentLoop = outer_trials
+    for thisOuter_loop in outer_loop:
+        outer_loop.status = STARTED
+        if hasattr(thisOuter_loop, 'status'):
+            thisOuter_loop.status = STARTED
+        currentLoop = outer_loop
         thisExp.timestampOnFlip(win, 'thisRow.t', format=globalClock.format)
-        if thisSession is not None:
-            # if running in a Session with a Liaison client, send data up to now
-            thisSession.sendExperimentData()
-        # abbreviate parameter names if possible (e.g. rgb = thisOuter_trial.rgb)
-        if thisOuter_trial != None:
-            for paramName in thisOuter_trial:
-                globals()[paramName] = thisOuter_trial[paramName]
+        # abbreviate parameter names if possible (e.g. rgb = thisOuter_loop.rgb)
+        if thisOuter_loop != None:
+            for paramName in thisOuter_loop:
+                globals()[paramName] = thisOuter_loop[paramName]
         
         # set up handler to look after randomisation of conditions etc
         inner_trials = data.TrialHandler2(
@@ -713,7 +683,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # create an object to store info about Routine main_square_screen
             main_square_screen = data.Routine(
                 name='main_square_screen',
-                components=[logging_mouse, click_square, mouse_score, big_text, clock_reset_button, score_main_screen],
+                components=[logging_mouse, click_square, mouse_score, score_main_screen],
             )
             main_square_screen.status = NOT_STARTED
             continueRoutine = True
@@ -739,8 +709,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             mouse_score.mouseClock.reset()
             # Run 'Begin Routine' code from code
             thisExp.addData("score", score)
-            # reset clock_reset_button to account for continued clicks & clear times on/off
-            clock_reset_button.reset()
             score_main_screen.setText(score)
             # store start times for main_square_screen
             main_square_screen.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
@@ -828,8 +796,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     click_square.tStart = t  # local t and not account for scr refresh
                     click_square.tStartRefresh = tThisFlipGlobal  # on global time
                     win.timeOnFlip(click_square, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'click_square.started')
                     # update status
                     click_square.status = STARTED
                     click_square.setAutoDraw(True)
@@ -886,38 +852,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                             mouse_score.time.append(mouse_score.mouseClock.getTime())
                             if gotValidClick:
                                 continueRoutine = False  # end routine on response
-                
-                # *big_text* updates
-                
-                # if big_text is starting this frame...
-                if big_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                    # keep track of start time/frame for later
-                    big_text.frameNStart = frameN  # exact frame index
-                    big_text.tStart = t  # local t and not account for scr refresh
-                    big_text.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(big_text, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'big_text.started')
-                    # update status
-                    big_text.status = STARTED
-                    big_text.setAutoDraw(True)
-                
-                # if big_text is active this frame...
-                if big_text.status == STARTED:
-                    # update params
-                    big_text.setText(f'''
-                    score:{score}
-                    points awarded next: {points}
-                    trial clock {int(t)}
-                    score interval:{scoring_interval}
-                    Global Clock: {int(globalClock.getTime())}
-                    end time: {end_time}
-                    
-                    Core Clock:{int(core.getTime())}
-                    points: {points}
-                    background: {background}
-                    
-                    ''', log=False)
                 # Run 'Each Frame' code from code
                 if globalClock.getTime() > end_time:
                     print(f'inner_trials.nRemaining{inner_trials.nRemaining}')
@@ -927,38 +861,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     skip = int(inner_trials.nRemaining)
                     inner_trials.skipTrials(skip)
                     continueRoutine = False
-                # *clock_reset_button* updates
-                
-                # if clock_reset_button is starting this frame...
-                if clock_reset_button.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
-                    # keep track of start time/frame for later
-                    clock_reset_button.frameNStart = frameN  # exact frame index
-                    clock_reset_button.tStart = t  # local t and not account for scr refresh
-                    clock_reset_button.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(clock_reset_button, 'tStartRefresh')  # time at next scr refresh
-                    # update status
-                    clock_reset_button.status = STARTED
-                    win.callOnFlip(clock_reset_button.buttonClock.reset)
-                    clock_reset_button.setAutoDraw(True)
-                
-                # if clock_reset_button is active this frame...
-                if clock_reset_button.status == STARTED:
-                    # update params
-                    pass
-                    # check whether clock_reset_button has been pressed
-                    if clock_reset_button.isClicked:
-                        if not clock_reset_button.wasClicked:
-                            # if this is a new click, store time of first click and clicked until
-                            clock_reset_button.timesOn.append(routineTimer.getTime())
-                            clock_reset_button.timesOff.append(routineTimer.getTime())
-                        elif len(clock_reset_button.timesOff):
-                            # if click is continuing from last frame, update time of clicked until
-                            clock_reset_button.timesOff[-1] = routineTimer.getTime()
-                        if not clock_reset_button.wasClicked:
-                            # run callback code when clock_reset_button is clicked
-                            globalClock.reset()
-                # take note of whether clock_reset_button was clicked, so that next frame we know if clicks are new
-                clock_reset_button.wasClicked = clock_reset_button.isClicked and clock_reset_button.status == STARTED
                 
                 # *score_main_screen* updates
                 
@@ -1034,13 +936,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             inner_trials.addData('mouse_score.time', mouse_score.time)
             inner_trials.addData('mouse_score.corr', mouse_score.corr)
             inner_trials.addData('mouse_score.clicked_name', mouse_score.clicked_name)
-            inner_trials.addData('clock_reset_button.numClicks', clock_reset_button.numClicks)
-            if clock_reset_button.numClicks:
-               inner_trials.addData('clock_reset_button.timesOn', clock_reset_button.timesOn)
-               inner_trials.addData('clock_reset_button.timesOff', clock_reset_button.timesOff)
-            else:
-               inner_trials.addData('clock_reset_button.timesOn', "")
-               inner_trials.addData('clock_reset_button.timesOff', "")
             # the Routine "main_square_screen" was not non-slip safe, so reset the non-slip timer
             routineTimer.reset()
             
@@ -1116,8 +1011,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     mouse_logging_2.tStart = t  # local t and not account for scr refresh
                     mouse_logging_2.tStartRefresh = tThisFlipGlobal  # on global time
                     win.timeOnFlip(mouse_logging_2, 'tStartRefresh')  # time at next scr refresh
-                    # add timestamp to datafile
-                    thisExp.addData('mouse_logging_2.started', t)
                     # update status
                     mouse_logging_2.status = STARTED
                     prevButtonState = [0, 0, 0]  # if now button is down we will treat as 'new' click
@@ -1315,7 +1208,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         blackout_screen.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # if trial has changed, end Routine now
-            if hasattr(thisOuter_trial, 'status') and thisOuter_trial.status == STOPPING:
+            if hasattr(thisOuter_loop, 'status') and thisOuter_loop.status == STOPPING:
                 continueRoutine = False
             # get current time
             t = routineTimer.getTime()
@@ -1409,21 +1302,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # Run 'End Routine' code from code_4
         globalClock.reset()  # Resets the global timer to 0
         # stop_routine = False
-        # store data for outer_trials (TrialHandler)
+        # store data for outer_loop (TrialHandler)
         x, y = mouse.getPos()
         buttons = mouse.getPressed()
-        outer_trials.addData('mouse.x', x)
-        outer_trials.addData('mouse.y', y)
-        outer_trials.addData('mouse.leftButton', buttons[0])
-        outer_trials.addData('mouse.midButton', buttons[1])
-        outer_trials.addData('mouse.rightButton', buttons[2])
+        outer_loop.addData('mouse.x', x)
+        outer_loop.addData('mouse.y', y)
+        outer_loop.addData('mouse.leftButton', buttons[0])
+        outer_loop.addData('mouse.midButton', buttons[1])
+        outer_loop.addData('mouse.rightButton', buttons[2])
         # the Routine "blackout_screen" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
-        # mark thisOuter_trial as finished
-        if hasattr(thisOuter_trial, 'status'):
-            thisOuter_trial.status = FINISHED
+        # mark thisOuter_loop as finished
+        if hasattr(thisOuter_loop, 'status'):
+            thisOuter_loop.status = FINISHED
         # if awaiting a pause, pause now
-        if outer_trials.status == PAUSED:
+        if outer_loop.status == PAUSED:
             thisExp.status = PAUSED
             pauseExperiment(
                 thisExp=thisExp, 
@@ -1431,24 +1324,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 timers=[globalClock], 
             )
             # once done pausing, restore running status
-            outer_trials.status = STARTED
-        thisExp.nextEntry()
-        
-    # completed 1.0 repeats of 'outer_trials'
-    outer_trials.status = FINISHED
+            outer_loop.status = STARTED
+    # completed 1.0 repeats of 'outer_loop'
+    outer_loop.status = FINISHED
     
-    if thisSession is not None:
-        # if running in a Session with a Liaison client, send data up to now
-        thisSession.sendExperimentData()
-    # get names of stimulus parameters
-    if outer_trials.trialList in ([], [None], None):
-        params = []
-    else:
-        params = outer_trials.trialList[0].keys()
-    # save data for this loop
-    outer_trials.saveAsText(filename + '_outer_trials.csv', delim=',',
-        stimOut=params,
-        dataOut=['n','all_mean','all_std', 'all_raw'])
     
     # mark experiment as finished
     endExperiment(thisExp, win=win)

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 17, 2025, at 21:37
+    on September 22, 2025, at 16:06
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -138,7 +138,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\Michael\\OneDrive - Georgia Southern University\\4_RESEARCH\\behavior_contrast\\behavior_contrast_kaylarandall\\behavioral_contrast_psychopy\\main_csv_lastrun.py',
+        originPath='C:\\Users\\krandall\\Desktop\\behavioral_contrast_psychopy-main\\main_csv_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -193,7 +193,7 @@ def setupWindow(expInfo=None, win=None):
     if win is None:
         # if not given a window to setup, make one
         win = visual.Window(
-            size=_winSize, fullscr=_fullScr, screen=1,
+            size=_winSize, fullscr=_fullScr, screen=0,
             winType='pyglet', allowGUI=True, allowStencil=False,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
@@ -618,8 +618,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
-    outer_loop = data.TrialHandler2(
-        name='outer_loop',
+    outer_trials = data.TrialHandler2(
+        name='outer_trials',
         nReps=1.0, 
         method='sequential', 
         extraInfo=expInfo, 
@@ -627,23 +627,29 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         trialList=data.importConditions(expInfo['experiment_selection']), 
         seed=None, 
     )
-    thisExp.addLoop(outer_loop)  # add the loop to the experiment
-    thisOuter_loop = outer_loop.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb = thisOuter_loop.rgb)
-    if thisOuter_loop != None:
-        for paramName in thisOuter_loop:
-            globals()[paramName] = thisOuter_loop[paramName]
+    thisExp.addLoop(outer_trials)  # add the loop to the experiment
+    thisOuter_trial = outer_trials.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisOuter_trial.rgb)
+    if thisOuter_trial != None:
+        for paramName in thisOuter_trial:
+            globals()[paramName] = thisOuter_trial[paramName]
+    if thisSession is not None:
+        # if running in a Session with a Liaison client, send data up to now
+        thisSession.sendExperimentData()
     
-    for thisOuter_loop in outer_loop:
-        outer_loop.status = STARTED
-        if hasattr(thisOuter_loop, 'status'):
-            thisOuter_loop.status = STARTED
-        currentLoop = outer_loop
+    for thisOuter_trial in outer_trials:
+        outer_trials.status = STARTED
+        if hasattr(thisOuter_trial, 'status'):
+            thisOuter_trial.status = STARTED
+        currentLoop = outer_trials
         thisExp.timestampOnFlip(win, 'thisRow.t', format=globalClock.format)
-        # abbreviate parameter names if possible (e.g. rgb = thisOuter_loop.rgb)
-        if thisOuter_loop != None:
-            for paramName in thisOuter_loop:
-                globals()[paramName] = thisOuter_loop[paramName]
+        if thisSession is not None:
+            # if running in a Session with a Liaison client, send data up to now
+            thisSession.sendExperimentData()
+        # abbreviate parameter names if possible (e.g. rgb = thisOuter_trial.rgb)
+        if thisOuter_trial != None:
+            for paramName in thisOuter_trial:
+                globals()[paramName] = thisOuter_trial[paramName]
         
         # set up handler to look after randomisation of conditions etc
         inner_trials = data.TrialHandler2(
@@ -796,6 +802,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     click_square.tStart = t  # local t and not account for scr refresh
                     click_square.tStartRefresh = tThisFlipGlobal  # on global time
                     win.timeOnFlip(click_square, 'tStartRefresh')  # time at next scr refresh
+                    # add timestamp to datafile
+                    thisExp.timestampOnFlip(win, 'click_square.started')
                     # update status
                     click_square.status = STARTED
                     click_square.setAutoDraw(True)
@@ -1011,6 +1019,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     mouse_logging_2.tStart = t  # local t and not account for scr refresh
                     mouse_logging_2.tStartRefresh = tThisFlipGlobal  # on global time
                     win.timeOnFlip(mouse_logging_2, 'tStartRefresh')  # time at next scr refresh
+                    # add timestamp to datafile
+                    thisExp.addData('mouse_logging_2.started', t)
                     # update status
                     mouse_logging_2.status = STARTED
                     prevButtonState = [0, 0, 0]  # if now button is down we will treat as 'new' click
@@ -1208,7 +1218,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         blackout_screen.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # if trial has changed, end Routine now
-            if hasattr(thisOuter_loop, 'status') and thisOuter_loop.status == STOPPING:
+            if hasattr(thisOuter_trial, 'status') and thisOuter_trial.status == STOPPING:
                 continueRoutine = False
             # get current time
             t = routineTimer.getTime()
@@ -1302,21 +1312,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # Run 'End Routine' code from code_4
         globalClock.reset()  # Resets the global timer to 0
         # stop_routine = False
-        # store data for outer_loop (TrialHandler)
+        # store data for outer_trials (TrialHandler)
         x, y = mouse.getPos()
         buttons = mouse.getPressed()
-        outer_loop.addData('mouse.x', x)
-        outer_loop.addData('mouse.y', y)
-        outer_loop.addData('mouse.leftButton', buttons[0])
-        outer_loop.addData('mouse.midButton', buttons[1])
-        outer_loop.addData('mouse.rightButton', buttons[2])
+        outer_trials.addData('mouse.x', x)
+        outer_trials.addData('mouse.y', y)
+        outer_trials.addData('mouse.leftButton', buttons[0])
+        outer_trials.addData('mouse.midButton', buttons[1])
+        outer_trials.addData('mouse.rightButton', buttons[2])
         # the Routine "blackout_screen" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
-        # mark thisOuter_loop as finished
-        if hasattr(thisOuter_loop, 'status'):
-            thisOuter_loop.status = FINISHED
+        # mark thisOuter_trial as finished
+        if hasattr(thisOuter_trial, 'status'):
+            thisOuter_trial.status = FINISHED
         # if awaiting a pause, pause now
-        if outer_loop.status == PAUSED:
+        if outer_trials.status == PAUSED:
             thisExp.status = PAUSED
             pauseExperiment(
                 thisExp=thisExp, 
@@ -1324,10 +1334,24 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 timers=[globalClock], 
             )
             # once done pausing, restore running status
-            outer_loop.status = STARTED
-    # completed 1.0 repeats of 'outer_loop'
-    outer_loop.status = FINISHED
+            outer_trials.status = STARTED
+        thisExp.nextEntry()
+        
+    # completed 1.0 repeats of 'outer_trials'
+    outer_trials.status = FINISHED
     
+    if thisSession is not None:
+        # if running in a Session with a Liaison client, send data up to now
+        thisSession.sendExperimentData()
+    # get names of stimulus parameters
+    if outer_trials.trialList in ([], [None], None):
+        params = []
+    else:
+        params = outer_trials.trialList[0].keys()
+    # save data for this loop
+    outer_trials.saveAsText(filename + '_outer_trials.csv', delim=',',
+        stimOut=params,
+        dataOut=['n','all_mean','all_std', 'all_raw'])
     
     # mark experiment as finished
     endExperiment(thisExp, win=win)

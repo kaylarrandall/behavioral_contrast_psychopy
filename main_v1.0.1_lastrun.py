@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on September 22, 2025, at 16:06
+    on September 22, 2025, at 16:33
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -41,8 +41,8 @@ deviceManager = hardware.DeviceManager()
 _thisDir = os.path.dirname(os.path.abspath(__file__))
 # store info about the experiment session
 psychopyVersion = '2025.1.1'
-expName = 'squares'  # from the Builder filename that created this script
-expVersion = ''
+expName = 'behavioral contrast'  # from the Builder filename that created this script
+expVersion = 'v1.0.1'
 # a list of functions to run when the experiment ends (starts off blank)
 runAtExit = []
 # information about this experiment
@@ -138,7 +138,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\krandall\\Desktop\\behavioral_contrast_psychopy-main\\main_csv_lastrun.py',
+        originPath='C:\\Users\\Michael\\OneDrive - Georgia Southern University\\behavioral_contrast_psychopy\\main_v1.0.1_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -972,7 +972,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             points_square_screen.tStart = globalClock.getTime(format='float')
             points_square_screen.status = STARTED
             thisExp.addData('points_square_screen.started', points_square_screen.tStart)
-            points_square_screen.maxDuration = 10
+            points_square_screen.maxDuration = 3
             # skip Routine points_square_screen if its 'Skip if' condition is True
             points_square_screen.skipped = continueRoutine and not (globalClock.getTime() > end_time)
             continueRoutine = points_square_screen.skipped

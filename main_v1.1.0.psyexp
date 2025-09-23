@@ -46,7 +46,7 @@
     <Param val="RIGHT_EYE" valType="str" updates="None" name="elTrackEyes"/>
     <Param val="PUPIL_CR_TRACKING" valType="str" updates="None" name="elTrackingMode"/>
     <Param val="behavioral contrast" valType="str" updates="None" name="expName"/>
-    <Param val="v1.0.1" valType="str" updates="None" name="expVersion"/>
+    <Param val="v1.1.0" valType="str" updates="None" name="expVersion"/>
     <Param val="on Sync" valType="str" updates="None" name="exportHTML"/>
     <Param val="None" valType="str" updates="None" name="eyetracker"/>
     <Param val="" valType="code" updates="None" name="frameRate"/>
@@ -145,8 +145,8 @@
         <Param val="experiment" valType="str" updates="constant" name="timeRelativeTo"/>
       </MouseComponent>
       <CodeComponent name="code_2" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="component_clicks = 0" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="component_clicks = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
@@ -278,17 +278,17 @@
       <CodeComponent name="code" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="score = 0&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="score = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="psychoJS.experiment.addData(&quot;score&quot;, score);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="thisExp.addData(&quot;score&quot;, score)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="score = 0&amp;#10;component_clicks = 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="score = 0;&amp;#10;component_clicks = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="psychoJS.experiment.addData(&quot;score&quot;, score);&amp;#10;mouseDown = false;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="thisExp.addData(&quot;score&quot;, score)&amp;#10;mouseDown = False" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
-        <Param val="if globalClock.getTime() &gt; end_time:&amp;#10;    print(f'inner_trials.nRemaining{inner_trials.nRemaining}')&amp;#10;    print(f'Skipping{inner_trials.nRemaining} trials')&amp;#10;    print(f'Time: global:{globalClock.getTime()} end time {end_time}')&amp;#10;    print(f'background{background}')&amp;#10;    skip = int(inner_trials.nRemaining)&amp;#10;    inner_trials.skipTrials(skip)&amp;#10;    continueRoutine = False" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="if ((globalClock.getTime() &gt; end_time)) {&amp;#10;    console.log(`inner_trials.nRemaining${inner_trials.nRemaining}`);&amp;#10;    console.log(`Skipping${inner_trials.nRemaining} trials`);&amp;#10;    console.log(`Time: global:${globalClock.getTime()} end time ${end_time}`);&amp;#10;    console.log(`background${background}`);&amp;#10;    skip = Number.parseInt(inner_trials.nRemaining);&amp;#10;    inner_trials.skipTrials(skip);&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="if globalClock.getTime() &gt; end_time:&amp;#10;    print(f'inner_trials.nRemaining{inner_trials.nRemaining}')&amp;#10;    print(f'Skipping{inner_trials.nRemaining} trials')&amp;#10;    print(f'Time: global:{globalClock.getTime()} end time {end_time}')&amp;#10;    print(f'background{background}')&amp;#10;    skip = int(inner_trials.nRemaining)&amp;#10;    inner_trials.skipTrials(skip)&amp;#10;    continueRoutine = False&amp;#10;    &amp;#10;#if logging_mouse.getPressed()[0] == 1 and not mouseDown:&amp;#10;#    print('clicked')&amp;#10;#    component_clicks += 1&amp;#10;#    print(component_clicks)&amp;#10;#    &amp;#10;&amp;#10;&amp;#10;# Inside your loop:&amp;#10;if logging_mouse.getPressed()[0] == 1 and not mouseDown:&amp;#10;    print('clicked')&amp;#10;    component_clicks += 1&amp;#10;    print(component_clicks)&amp;#10;    mouseDown = True  # now it’s pressed&amp;#10;&amp;#10;# Reset when mouse is released&amp;#10;if logging_mouse.getPressed()[0] == 0:&amp;#10;    mouseDown = False" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="if ((globalClock.getTime() &gt; end_time)) {&amp;#10;    console.log(`inner_trials.nRemaining${inner_trials.nRemaining}`);&amp;#10;    console.log(`Skipping${inner_trials.nRemaining} trials`);&amp;#10;    console.log(`Time: global:${globalClock.getTime()} end time ${end_time}`);&amp;#10;    console.log(`background${background}`);&amp;#10;    skip = Number.parseInt(inner_trials.nRemaining);&amp;#10;    inner_trials.skipTrials(skip);&amp;#10;    continueRoutine = false;&amp;#10;}&amp;#10;if (((logging_mouse.getPressed()[0] === 1) &amp;&amp; (! mouseDown))) {&amp;#10;    console.log(&quot;clicked&quot;);&amp;#10;    component_clicks += 1;&amp;#10;    console.log(component_clicks);&amp;#10;    mouseDown = true;&amp;#10;}&amp;#10;if ((logging_mouse.getPressed()[0] === 0)) {&amp;#10;    mouseDown = false;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="psychoJS.experiment.addData(&quot;component_clicks&quot;, component_clicks);&amp;#10;psychoJS.experiment.addData(&quot;score&quot;, score);&amp;#10;component_clicks = 0;&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="&amp;#10;# --- End Routine ---&amp;#10;thisExp.addData('component_clicks', component_clicks)&amp;#10;thisExp.addData('score', score)&amp;#10;component_clicks = 0" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -486,8 +486,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="globalClock.reset();&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="globalClock.reset()  # Resets the global timer to 0&amp;#10;# stop_routine = False" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="globalClock.reset();&amp;#10;component_clicks = 0;&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="globalClock.reset()  # Resets the global timer to 0&amp;#10;# stop_routine = False&amp;#10;component_clicks = 0" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_4" valType="code" updates="None" name="name"/>
       </CodeComponent>

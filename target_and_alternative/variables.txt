@@ -1,0 +1,107 @@
+inner_trials.addData("score", score) 
+outer_trials.addData("score", score)
+thisExp.addData("final_score", score)
+
+# At the end of experiment, after score is finalized
+thisExp.addData("final_score", score)
+
+
+
+
+globalClock.getTime()
+globalClock.getLastResetTime()
+globalClock.reset()
+
+
+core.getAbsTime()
+core.getTime() ## THIS IS ALWAYS THE TIME FROM THE VERY VERY START!
+
+inner_trials
+##########################################################################################################
+## This is when the instructions end:
+
+
+thisInner_trial.data.parent.nRemaining
+
+
+expInfo
+
+thisExp
+
+globalClock.reset()  # Resets the global timer to 0
+stop_routine = False
+random_interval
+inner_trials.addData()
+inner_trials.next() # advances to next set of trial
+inner_trials.skipTrials(thisInner_trial.data.parent.nRemaining) # Skip ahead n number of trials
+## Try the above with the value of n remaining
+inner_trials.nRemaining
+thisInner_trial.thisRepN
+
+inner_trials.skipTrials(inner_trials.nRemaining)
+
+Stop this trial
+inner_trials.abortCurrentTrial()
+continueRoutine = False
+
+
+thisOuter_trial['thisN']
+thisOuter_trial.thisTrialN
+thisOuter_trial['thisTrialN']
+len(thisOuter_trial)
+
+
+##########################################################################################################
+##########################################################################################################
+##########################################################################################################
+random_interval
+Just do:
+random_interval = randint(10,20)
+
+Attribute	What it gives you
+trials2.thisTrialN	Trial index in that loop (0-based)
+trials2.thisRepN	Current repetition of that loop
+trials2.thisIndex	Index of current row in the conditions file
+trials2.thisN	Global trial number across all loops
+trials2.trialList	List of dicts with conditions
+trials2._trialClock	Internal Clock object for this loop
+
+
+if globalClock.getTime() > end_time:#  if t > end_time:
+    print('Phase time expired, stopped routine!')
+#    Trials_exp_2.finished = True
+    continueRoutine = False
+    stop_routine = True
+
+
+phase_time = core.Clock()  # Start a new timer
+
+
+
+
+
+
+if t >= random_interval:  # If the routine has been running for 15 seconds
+    continueRoutine = False  # End the routine
+    if points is not None:
+        try:
+            if float(points) >= 0:
+                clicked = True
+                # score += float(points)  # re-enable if needed
+        except Exception as e:
+            print(f"Points value is invalid: {points} ({e})")
+    else:
+        print("Warning: points is None, skipping points check.")
+
+
+
+
+win.color = background 
+
+
+
+
+psychopy.core.clock.Clock
+
+OR?
+core.Clock()

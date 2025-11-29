@@ -317,7 +317,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="psychoJS.experiment.addData(&quot;component_clicks&quot;, component_clicks);&amp;#10;psychoJS.experiment.addData(&quot;score&quot;, score);&amp;#10;component_clicks = 0;&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="&amp;#10;# --- End Routine ---&amp;#10;thisExp.addData('component_clicks', component_clicks)&amp;#10;thisExp.addData('score', score)&amp;#10;component_clicks = 0" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="# --- End Routine ---&amp;#10;thisExp.addData('component_clicks', component_clicks)&amp;#10;thisExp.addData('score', score)&amp;#10;component_clicks = 0" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code" valType="code" updates="None" name="name"/>
       </CodeComponent>
